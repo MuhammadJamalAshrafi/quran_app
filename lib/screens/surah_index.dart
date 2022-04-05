@@ -1,7 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class SurahIndex extends StatelessWidget {
+class SurahIndex extends StatefulWidget {
   const SurahIndex({Key? key}) : super(key: key);
+
+  @override
+  State<SurahIndex> createState() => _SurahIndexState();
+}
+
+class _SurahIndexState extends State<SurahIndex> {
+  @override
+  void initState(){
+    super.initState();
+    _getResponse();
+  }
+
+  _getResponse() async{
+    var url = Uri.parse('https://api.quran.com/api/v4/chapters?language=en');
+    var response = await http.get(url);
+    print('Response body: ${response.body}');
+  }
 
   @override
   Widget build(BuildContext context) {
