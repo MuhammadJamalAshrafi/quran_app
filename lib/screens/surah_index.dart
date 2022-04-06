@@ -18,7 +18,7 @@ class _SurahIndexState extends State<SurahIndex> {
   _getResponse() async{
     var url = Uri.parse('https://api.quran.com/api/v4/chapters?language=en');
     var response = await http.get(url);
-    print('Response body: ${response.body}');
+    // print('Response body: ${response.body}');
   }
 
   @override
