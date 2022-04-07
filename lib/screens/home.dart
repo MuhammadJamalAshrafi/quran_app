@@ -8,9 +8,22 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: ImageIcon(AssetImage("images/menu.png"), color: Colors.black,size: 40),
-        title: Text("Quran App", style: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.w700)),
-        elevation: 1.0,
+        leading: const ImageIcon(AssetImage("images/menu.png"), color: Colors.black,size: 10.0),
+        leadingWidth: 100,
+        title: RichText(
+          text: TextSpan(
+            text: "Quran ",
+            style: TextStyle(fontSize: 36, color: Color(0xFF54A7BC),fontFamily: "KohinoorBangla", fontWeight: FontWeight.w700),
+            children: [
+              TextSpan(
+              text: "App",
+              style: TextStyle(fontSize: 36, color: Color(0xFFF5CB5C), fontFamily: "KohinoorBangla", fontWeight: FontWeight.w700)
+            )
+            ]
+          ),
+        ),
+        // title: Text("Quran App", style: TextStyle(color: Colors.black, fontSize: 36, fontWeight: FontWeight.w700)),
+        elevation: 0.0,
         centerTitle: true,
       ),
         backgroundColor: Colors.white,
