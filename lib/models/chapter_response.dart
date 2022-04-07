@@ -7,6 +7,7 @@ class ChapterResponse{
 
   factory ChapterResponse.fromJson(Map<String, dynamic> data){
     var chapterResponseParsed = ChapterResponse();
+    chapterResponseParsed.chapters = [];
     for(var chapterJson in (data['chapters'] as List<dynamic>)){
       var chapterMap = chapterJson as Map<String, dynamic>;
       chapterResponseParsed.chapters?.add(Chapter.fromJson(chapterMap));
