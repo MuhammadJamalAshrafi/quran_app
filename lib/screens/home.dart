@@ -6,6 +6,13 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: ImageIcon(AssetImage("images/menu.png"), color: Colors.black,size: 40),
+        title: Text("Quran App", style: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.w700)),
+        elevation: 1.0,
+        centerTitle: true,
+      ),
         backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
