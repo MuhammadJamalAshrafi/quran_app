@@ -8,7 +8,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: const ImageIcon(AssetImage("images/menu.png"), color: Colors.black,size: 10.0),
+        leading: const ImageIcon(AssetImage("images/menu.png"), color: Colors.black),
         leadingWidth: 100,
         title: RichText(
           text: TextSpan(
