@@ -33,7 +33,21 @@ class Home extends StatelessWidget {
         elevation: 0.0,
         centerTitle: true,
       ),
-        drawer: Drawer(),
+        drawer: Drawer(
+          backgroundColor: Color(0xFF54A7BC),
+          child: Column(
+            children: [
+              DrawerHeader(
+                  child: Center(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Center(child: Text("Quran App", style: TextStyle(fontSize: 44))),
+                    ),
+                  )
+              ),
+            ],
+          ),
+        ),
         backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20, bottom: 60),
