@@ -134,7 +134,7 @@ class _SurahIndexState extends State<SurahIndex> {
                                       ],
                                     ),
                                     const Spacer(),
-                                    const Text("الفاتحة", style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400, fontFamily: "Poppins", height: 2.5)),
+                                    Text(_chapterResponse?.chapters![index]?.name_arabic ?? "", style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400, fontFamily: "Poppins", height: 2.5)),
                                     const SizedBox(width: 18),
                                     Image.asset("images/arrow.png")
                                   ],
