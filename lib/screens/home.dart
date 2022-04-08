@@ -11,7 +11,7 @@ class Home extends StatelessWidget {
         leading: const ImageIcon(AssetImage("images/menu.png"), color: Colors.black),
         leadingWidth: 100,
         title: RichText(
-          text: TextSpan(
+          text: const TextSpan(
             text: "Quran ",
             style: TextStyle(fontSize: 36, color: Color(0xFF54A7BC),fontFamily: "KohinoorBangla", fontWeight: FontWeight.w700),
             children: [

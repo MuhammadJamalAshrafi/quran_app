@@ -29,7 +29,7 @@ class _SplashState extends State<Splash> {
         // width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/background.png"),
+            image: AssetImage("images/bg.png"),
             fit: BoxFit.cover
           )
         ),
