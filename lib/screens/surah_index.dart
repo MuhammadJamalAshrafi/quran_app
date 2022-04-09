@@ -21,7 +21,13 @@ class _SurahIndexState extends State<SurahIndex> {
     super.initState();
     _getResponse();
   }
-
+  // Future _getResponse() async {
+  //     var url = Uri.parse('https://api.quran.com/api/v4/chapters?language=en');
+  //     var response = await http.get(url);
+  //     var responseString = response.body;
+  //     var decodedJson = jsonDecode(responseString) as Map<String, dynamic>;
+  //     return ChapterResponse.fromJson(decodedJson);
+  // }
   _getResponse() async {
     try {
       var url = Uri.parse('https://api.quran.com/api/v4/chapters?language=en');
@@ -142,35 +148,9 @@ class _SurahIndexState extends State<SurahIndex> {
                             ),
                           ),
                         )
-                        // Expanded(
-                        //     child: ListView.builder(
-                        //       itemCount: _chapterResponse?.chapters?.length ?? 0,
-                        //         itemBuilder: (_,index) => ListTile(
-                        //           leading: Text("${_chapterResponse?.chapters![index]?.id?.toString()}."),
-                        //           title: Text("Al-Fatiha", style: TextStyle(fontSize: 16, color: Colors.black)),
-                        //           subtitle: Text("The Opener", style: TextStyle(fontSize: 12, color: Color(0xFF888888))),
-                        //         ),
-                        //     ),
-                        // ),
-
                   ]),
             ))
-        // Column(
-        //   children: [
-        //     Expanded(
-        //         child: ListView.builder(
-        //           itemCount: _chapterResponse?.chapters?.length ?? 0,
-        //             itemBuilder: (_,index) => Card(
-        //               child: ListTile(
-        //                 leading: Text("${_chapterResponse?.chapters![index]?.id?.toString()}."),
-        //                 title: Text("Al-Fatiha", style: TextStyle(fontSize: 16, color: Colors.black)),
-        //                 subtitle: Text("The Opener", style: TextStyle(fontSize: 12, color: Color(0xFF888888))),
-        //               ),
-        //             ),
-        //         ),
-        //     ),
-        //   ],
-        // ),
         );
   }
+
 }

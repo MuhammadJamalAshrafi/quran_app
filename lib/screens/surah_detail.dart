@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:quran_app/models/chapter_response.dart';
@@ -82,7 +83,8 @@ class _SurahDetailState extends State<SurahDetail> {
               ),
               child: Column(
                   children: [
-                    const SizedBox(height: 43),
+                    const SizedBox(height: 25),
+                    const Text("The Opening", style: TextStyle(fontSize: 14, color: Color(0xFF888888), fontFamily: "Poppins", fontWeight: FontWeight.w500)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -108,37 +110,58 @@ class _SurahDetailState extends State<SurahDetail> {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10, right: 20.44),
-                        child: ListView.separated(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          itemCount: _chapterResponse?.chapters?.length ?? 0,
-                          separatorBuilder: (BuildContext context, int index) =>
-                          const SizedBox(height: 20),
-                          itemBuilder: (_,index) => Row(
-                            // children: [
-                            //   Row(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            textDirection: TextDirection.rtl,
                             children: [
                               Stack(
                                 alignment: Alignment.center,
                                 children: [
                                   Image.asset("images/big_star.png", width: 50, height: 50),
-                                  Text(_chapterResponse?.chapters![index]?.id?.toString() ?? "",style: TextStyle(color: Colors.black, fontSize: 16, fontFamily: "Poppins", fontWeight: FontWeight.w500))
-                                ],),
-                              const SizedBox(width: 34),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(_chapterResponse?.chapters![index]?.name_simple ?? "", style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w400, fontFamily: "Poppins")),
-                                  Text(_chapterResponse?.chapters![index]?.translated_name?.name ?? "", style: TextStyle(fontSize: 14, color: Color(0xFF888888), fontWeight: FontWeight.w300, fontFamily: "Poppins"))
+                                  const Text("1",style: TextStyle(color: Colors.black, fontSize: 16, fontFamily: "Poppins", fontWeight: FontWeight.w500))
                                 ],
                               ),
-                              const Spacer(),
-                              Text(_chapterResponse?.chapters![index]?.name_arabic ?? "", style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400, fontFamily: "Poppins", height: 2.5)),
-                              const SizedBox(width: 18),
-                              Image.asset("images/arrow.png")
+                              const SizedBox(width: 14),
+                              const Expanded(
+                                child: Text(" صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ", style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400, fontFamily: "Poppins", height: 2.25, letterSpacing: 0.3),
+                                  textAlign: TextAlign.right),
+                              ),
                             ],
                           ),
                         ),
+                        // child: ListView.separated(
+                        //   scrollDirection: Axis.vertical,
+                        //   shrinkWrap: true,
+                        //   itemCount: _chapterResponse?.chapters?.length ?? 0,
+                        //   separatorBuilder: (BuildContext context, int index) =>
+                        //   const SizedBox(height: 20),
+                        //   itemBuilder: (_,index) => Row(
+                        //     // children: [
+                        //     //   Row(
+                        //     children: [
+                        //       Stack(
+                        //         alignment: Alignment.center,
+                        //         children: [
+                        //           Image.asset("images/big_star.png", width: 50, height: 50),
+                        //           Text(_chapterResponse?.chapters![index]?.id?.toString() ?? "",style: TextStyle(color: Colors.black, fontSize: 16, fontFamily: "Poppins", fontWeight: FontWeight.w500))
+                        //         ],),
+                        //       const SizedBox(width: 34),
+                        //       Column(
+                        //         crossAxisAlignment: CrossAxisAlignment.start,
+                        //         children: [
+                        //           Text(_chapterResponse?.chapters![index]?.name_simple ?? "", style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w400, fontFamily: "Poppins")),
+                        //           Text(_chapterResponse?.chapters![index]?.translated_name?.name ?? "", style: TextStyle(fontSize: 14, color: Color(0xFF888888), fontWeight: FontWeight.w300, fontFamily: "Poppins"))
+                        //         ],
+                        //       ),
+                        //       const Spacer(),
+                        //       Text(_chapterResponse?.chapters![index]?.name_arabic ?? "", style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400, fontFamily: "Poppins", height: 2.5)),
+                        //       const SizedBox(width: 18),
+                        //       Image.asset("images/arrow.png")
+                        //     ],
+                        //   ),
+                        // ),
                       ),
                     )
                   ]),
