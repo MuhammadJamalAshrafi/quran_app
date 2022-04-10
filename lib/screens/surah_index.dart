@@ -320,7 +320,7 @@ class SurahIndex extends StatelessWidget {
                                                     ?.name_simple ??
                                                 "",
                                             style: const TextStyle(
-                                                fontSize: 18,
+                                                fontSize: 16,
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w400,
                                                 fontFamily: "Poppins")),
@@ -329,7 +329,7 @@ class SurahIndex extends StatelessWidget {
                                                     ?.translated_name?.name ??
                                                 "",
                                             style: const TextStyle(
-                                                fontSize: 14,
+                                                fontSize: 12,
                                                 color: Color(0xFF888888),
                                                 fontWeight: FontWeight.w300,
                                                 fontFamily: "Poppins"))

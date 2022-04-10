@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quran_app/screens/surah_index.dart';
 import 'package:quran_app/widgets/app_drawer.dart';
 
 class Home extends StatelessWidget {
@@ -50,48 +51,53 @@ class Home extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 19),
-                Container(
-                  height: 110,
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: Row(
-                      children:[
-                        const Text("1. Surah Index",
-                            style:TextStyle(
-                                fontSize: 20,
-                                fontFamily: "Poppins",
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white
-                            )),
-                        const Spacer(),
-                        Container(
-                          width: 70,
-                          height: 70,
-                          child: Container(
-                            width: 7.56,
-                            height: 16,
+                GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => SurahIndex()));
+                  },
+                  child: Container(
+                    height: 110,
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: Row(
+                        children:[
+                          const Text("1. Surah Index",
+                              style:TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: "Poppins",
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white
+                              )),
+                          const Spacer(),
+                          Container(
+                            width: 70,
+                            height: 70,
+                            child: Container(
+                              width: 7.56,
+                              height: 16,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage("images/arrow.png"),
+                                )
+                              ),
+                            ),
                             decoration: const BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage("images/arrow.png"),
+                                image: AssetImage("images/polygon.png")
                               )
                             ),
-                          ),
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage("images/polygon.png")
-                            )
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                    image: const DecorationImage(
-                      image: AssetImage("images/div_bg.png"),
-                      fit: BoxFit.cover
-                    )
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      image: const DecorationImage(
+                        image: AssetImage("images/div_bg.png"),
+                        fit: BoxFit.cover
+                      )
+                    ),
                   ),
                 ),
                 const SizedBox(height: 18),
