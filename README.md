@@ -5,6 +5,9 @@
   - Drawer
   - ModalBottomSheet
 
+## Rest API
+https://quran.api-docs.io/v4/getting-started/introduction
+
 ## Figma UI
 You can see Figma UI which I have implemented.
 
