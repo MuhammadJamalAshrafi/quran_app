@@ -1,5 +1,9 @@
 # Quran App in Flutter.
-Stateful Widgets implementation with functionality.
+- HTTP API Calling
+- Rest API with Future Builder
+- ## New Components
+  - Drawer
+  - ModalBottomSheet
 
 ## Figma UI
 You can see Figma UI which I have implemented.
