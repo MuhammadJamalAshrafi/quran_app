@@ -31,7 +31,8 @@ class SurahIndex extends StatelessWidget {
                 onPressed: () => Scaffold.of(context).openDrawer(),
               );
             }),
-            leadingWidth: 100,
+            leadingWidth: 120,
+            toolbarHeight: 100,
             title: RichText(
               text: const TextSpan(
                   text: "Quran ",
@@ -73,7 +74,7 @@ class SurahIndex extends StatelessWidget {
                               color: Colors.black,
                               fontFamily: "Poppins",
                               fontSize: 24,
-                              fontWeight: FontWeight.bold)),
+                              fontWeight: FontWeight.w500)),
                       const SizedBox(width: 10),
                       Image.asset("images/small_star.png", width: 24, height: 24),
                     ],
@@ -310,7 +311,7 @@ class SurahIndex extends StatelessWidget {
                                                 fontWeight: FontWeight.w500))
                                       ],
                                     ),
-                                    const SizedBox(width: 34),
+                                    const SizedBox(width: 12),
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,

@@ -20,7 +20,8 @@ class Home extends StatelessWidget {
               );
             }
           ),
-          leadingWidth: 100,
+          leadingWidth: 120,
+          toolbarHeight: 100,
           title: RichText(
             text: const TextSpan(
               text: "Quran ",
@@ -43,7 +44,7 @@ class Home extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(height: 43),
-                const Text("As Salam u Alaikum",style: TextStyle(color: Colors.black, fontFamily: "Poppins", fontSize: 24, fontWeight: FontWeight.bold)),
+                const Text("As Salam u Alaikum",style: TextStyle(color: Colors.black, fontFamily: "Poppins", fontSize: 24, fontWeight: FontWeight.w500)),
                 const SizedBox(height: 15),
                 Container(
                   decoration: BoxDecoration(

@@ -32,7 +32,8 @@ class SurahDetail extends StatelessWidget {
                 onPressed: () => Scaffold.of(context).openDrawer(),
               );
             }),
-            leadingWidth: 100,
+            leadingWidth: 120,
+            toolbarHeight: 100,
             title: RichText(
               text: const TextSpan(
                   text: "Quran ",
