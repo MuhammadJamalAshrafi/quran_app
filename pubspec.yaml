@@ -75,6 +75,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family: AlMajeedQuranic
+      fonts:
+        - asset: fonts/AlMajeedQuranic.ttf
     - family: Poppins
       fonts:
         - asset: fonts/Poppins-Light.ttf
@@ -85,6 +88,6 @@ flutter:
     - family: KohinoorBangla
       fonts:
         - asset: fonts/KohinoorBangla.ttf
-  #
+
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

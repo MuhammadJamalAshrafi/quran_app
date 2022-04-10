@@ -21,13 +21,6 @@ class _SurahIndexState extends State<SurahIndex> {
     super.initState();
     _getResponse();
   }
-  // Future _getResponse() async {
-  //     var url = Uri.parse('https://api.quran.com/api/v4/chapters?language=en');
-  //     var response = await http.get(url);
-  //     var responseString = response.body;
-  //     var decodedJson = jsonDecode(responseString) as Map<String, dynamic>;
-  //     return ChapterResponse.fromJson(decodedJson);
-  // }
   _getResponse() async {
     try {
       var url = Uri.parse('https://api.quran.com/api/v4/chapters?language=en');

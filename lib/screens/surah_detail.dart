@@ -1,39 +1,18 @@
 import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:quran_app/models/chapter_response.dart';
+import 'package:quran_app/models/verses_response.dart';
 import 'package:quran_app/widgets/app_drawer.dart';
 
-class SurahDetail extends StatefulWidget {
+class SurahDetail extends StatelessWidget {
   const SurahDetail({Key? key}) : super(key: key);
 
-  @override
-  State<SurahDetail> createState() => _SurahDetailState();
-}
-
-class _SurahDetailState extends State<SurahDetail> {
-  ChapterResponse? _chapterResponse;
-
-  @override
-  void initState() {
-    super.initState();
-    _getResponse();
-  }
-
-  _getResponse() async {
-    try {
-      var url = Uri.parse('https://api.quran.com/api/v4/chapters?language=en');
-      var response = await http.get(url);
-      var responseString = response.body;
-      var decodedJson = jsonDecode(responseString) as Map<String, dynamic>;
-      setState(() {
-        _chapterResponse = ChapterResponse.fromJson(decodedJson);
-      });
-    } catch (e) {
-      print(e);
-    }
+  Future<VersesResponse> _getResponse() async{
+        var url = Uri.parse('https://api.quran.com/api/v4/quran/verses/uthmani?chapter_number=22');
+        var response = await http.get(url);
+        var responseString = response.body;
+        var decodedJson = jsonDecode(responseString) as Map<String, dynamic>;
+        return VersesResponse.fromJson(decodedJson);
   }
 
   @override
@@ -112,23 +91,50 @@ class _SurahDetailState extends State<SurahDetail> {
                         padding: const EdgeInsets.only(left: 10, right: 20.44),
                         child: Container(
                           width: MediaQuery.of(context).size.width,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            textDirection: TextDirection.rtl,
-                            children: [
-                              Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Image.asset("images/big_star.png", width: 50, height: 50),
-                                  const Text("1",style: TextStyle(color: Colors.black, fontSize: 16, fontFamily: "Poppins", fontWeight: FontWeight.w500))
-                                ],
-                              ),
-                              const SizedBox(width: 14),
-                              const Expanded(
-                                child: Text(" صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ", style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400, fontFamily: "Poppins", height: 2.25, letterSpacing: 0.3),
-                                  textAlign: TextAlign.right),
-                              ),
-                            ],
+                          child: FutureBuilder<VersesResponse>(
+                            future: _getResponse(),
+                            builder: (context,snapshot) {
+                              if(snapshot.connectionState == ConnectionState.done) {
+                                return ListView.separated(
+                                      scrollDirection: Axis.vertical,
+                                      shrinkWrap: true,
+                                      itemCount: snapshot.data?.verses?.length ?? 0,
+                                      separatorBuilder: (BuildContext context, int index) =>
+                                      const SizedBox(height: 20),
+                                      itemBuilder: (_,index) => Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  textDirection: TextDirection.rtl,
+                                  children: [
+                                    Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Image.asset(
+                                            "images/big_star.png", width: 50,
+                                            height: 50),
+                                        Text((index+1).toString(), style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16,
+                                            fontFamily: "Poppins",
+                                            fontWeight: FontWeight.w500))
+                                      ],
+                                    ),
+                                    const SizedBox(width: 14),
+                                    Expanded(
+                                      child: Text(
+                                          snapshot.data?.verses?[index].text_uthmani ?? "",
+                                          style: const TextStyle(fontSize: 20,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w400,
+                                              fontFamily: "AlMajeedQuranic",
+                                              height: 2.25),
+                                          textAlign: TextAlign.right),
+                                    ),
+                                  ],
+                                ));
+                              }
+                              else{return const Text("issue");}
+                              }
+                            // },
                           ),
                         ),
                         // child: ListView.separated(
