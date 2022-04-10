@@ -1,9 +1,6 @@
 # Quran App in Flutter.
 - HTTP API Calling
 - Rest API with Future Builder
-- ## New Components
-  - Drawer
-  - ModalBottomSheet
 
 ## Rest API
 https://quran.api-docs.io/v4/getting-started/introduction
