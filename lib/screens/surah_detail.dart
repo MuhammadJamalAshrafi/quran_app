@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:quran_app/models/chapter.dart';
 import 'package:quran_app/models/verses_response.dart';
 import 'package:quran_app/widgets/app_drawer.dart';
 
 class SurahDetail extends StatelessWidget {
-  const SurahDetail({Key? key}) : super(key: key);
+  final Chapter chapter;
+  SurahDetail({Key? key, required this.chapter}) : super(key: key);
 
   Future<VersesResponse> _getResponse() async{
-        var url = Uri.parse('https://api.quran.com/api/v4/quran/verses/uthmani?chapter_number=22');
+        var id = chapter.id.toString();
+        var url = Uri.parse('https://api.quran.com/api/v4/quran/verses/uthmani?chapter_number='+id);
         var response = await http.get(url);
         var responseString = response.body;
         var decodedJson = jsonDecode(responseString) as Map<String, dynamic>;
@@ -63,18 +66,18 @@ class SurahDetail extends StatelessWidget {
               child: Column(
                   children: [
                     const SizedBox(height: 25),
-                    const Text("The Opening", style: TextStyle(fontSize: 14, color: Color(0xFF888888), fontFamily: "Poppins", fontWeight: FontWeight.w500)),
+                    Text(chapter.translated_name!.name.toString(), style: TextStyle(fontSize: 14, color: Color(0xFF888888), fontFamily: "Poppins", fontWeight: FontWeight.w500)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset("images/small_star.png",width: 24, height: 24),
                         const SizedBox(width: 10),
-                        const Text("Surah Al Fatihha",
-                            style: TextStyle(
+                        Text("سورۃ "+chapter.name_arabic.toString(),
+                            style: const TextStyle(
                                 color: Colors.black,
-                                fontFamily: "Poppins",
+                                fontFamily: "AlMajeedQuranic",
                                 fontSize: 24,
-                                fontWeight: FontWeight.bold)),
+                                fontWeight: FontWeight.bold, letterSpacing: 1.5)),
                         const SizedBox(width: 10),
                         Image.asset("images/small_star.png",width: 24, height: 24),
                       ],
@@ -89,85 +92,51 @@ class SurahDetail extends StatelessWidget {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10, right: 20.44),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          child: FutureBuilder<VersesResponse>(
-                            future: _getResponse(),
-                            builder: (context,snapshot) {
-                              if(snapshot.connectionState == ConnectionState.done) {
-                                return ListView.separated(
-                                      scrollDirection: Axis.vertical,
-                                      shrinkWrap: true,
-                                      itemCount: snapshot.data?.verses?.length ?? 0,
-                                      separatorBuilder: (BuildContext context, int index) =>
-                                      const SizedBox(height: 20),
-                                      itemBuilder: (_,index) => Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  textDirection: TextDirection.rtl,
-                                  children: [
-                                    Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        Image.asset(
-                                            "images/big_star.png", width: 50,
-                                            height: 50),
-                                        Text((index+1).toString(), style: const TextStyle(
+                        child: FutureBuilder<VersesResponse>(
+                          future: _getResponse(),
+                          builder: (context,snapshot) {
+                            if(snapshot.connectionState == ConnectionState.done) {
+                              return ListView.separated(
+                                    scrollDirection: Axis.vertical,
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data?.verses?.length ?? 0,
+                                    separatorBuilder: (BuildContext context, int index) =>
+                                    const SizedBox(height: 20),
+                                    itemBuilder: (_,index) => Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                textDirection: TextDirection.rtl,
+                                children: [
+                                  Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      Image.asset(
+                                          "images/big_star.png", width: 50,
+                                          height: 50),
+                                      Text((index+1).toString(), style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontFamily: "Poppins",
+                                          fontWeight: FontWeight.w500))
+                                    ],
+                                  ),
+                                  const SizedBox(width: 14),
+                                  Expanded(
+                                    child: Text(
+                                        snapshot.data?.verses?[index].text_uthmani ?? "",
+                                        style: const TextStyle(fontSize: 20,
                                             color: Colors.black,
-                                            fontSize: 16,
-                                            fontFamily: "Poppins",
-                                            fontWeight: FontWeight.w500))
-                                      ],
-                                    ),
-                                    const SizedBox(width: 14),
-                                    Expanded(
-                                      child: Text(
-                                          snapshot.data?.verses?[index].text_uthmani ?? "",
-                                          style: const TextStyle(fontSize: 20,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w400,
-                                              fontFamily: "AlMajeedQuranic",
-                                              height: 2.25),
-                                          textAlign: TextAlign.right),
-                                    ),
-                                  ],
-                                ));
-                              }
-                              else{return const Text("issue");}
-                              }
-                            // },
-                          ),
+                                            fontWeight: FontWeight.w400,
+                                            fontFamily: "AlMajeedQuranic",
+                                            height: 2.25),
+                                        textAlign: TextAlign.right),
+                                  ),
+                                ],
+                              ));
+                            }
+                            else{return const Center(child: CircularProgressIndicator());}
+                            }
+                          // },
                         ),
-                        // child: ListView.separated(
-                        //   scrollDirection: Axis.vertical,
-                        //   shrinkWrap: true,
-                        //   itemCount: _chapterResponse?.chapters?.length ?? 0,
-                        //   separatorBuilder: (BuildContext context, int index) =>
-                        //   const SizedBox(height: 20),
-                        //   itemBuilder: (_,index) => Row(
-                        //     // children: [
-                        //     //   Row(
-                        //     children: [
-                        //       Stack(
-                        //         alignment: Alignment.center,
-                        //         children: [
-                        //           Image.asset("images/big_star.png", width: 50, height: 50),
-                        //           Text(_chapterResponse?.chapters![index]?.id?.toString() ?? "",style: TextStyle(color: Colors.black, fontSize: 16, fontFamily: "Poppins", fontWeight: FontWeight.w500))
-                        //         ],),
-                        //       const SizedBox(width: 34),
-                        //       Column(
-                        //         crossAxisAlignment: CrossAxisAlignment.start,
-                        //         children: [
-                        //           Text(_chapterResponse?.chapters![index]?.name_simple ?? "", style: TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.w400, fontFamily: "Poppins")),
-                        //           Text(_chapterResponse?.chapters![index]?.translated_name?.name ?? "", style: TextStyle(fontSize: 14, color: Color(0xFF888888), fontWeight: FontWeight.w300, fontFamily: "Poppins"))
-                        //         ],
-                        //       ),
-                        //       const Spacer(),
-                        //       Text(_chapterResponse?.chapters![index]?.name_arabic ?? "", style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.w400, fontFamily: "Poppins", height: 2.5)),
-                        //       const SizedBox(width: 18),
-                        //       Image.asset("images/arrow.png")
-                        //     ],
-                        //   ),
-                        // ),
                       ),
                     )
                   ]),

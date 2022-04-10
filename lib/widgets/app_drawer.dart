@@ -9,10 +9,13 @@ class AppDrawer extends StatelessWidget {
       width: MediaQuery.of(context).size.width - 150,
       child: Drawer(
         elevation: 0.0,
-        backgroundColor: Color(0xFF54A7BC),
+        backgroundColor: const Color(0xFF54A7BC),
         child: Column(
           children: [
             DrawerHeader(
+              decoration: BoxDecoration(
+                border: Border.all(color: const Color(0xFF54A7BC))
+              ),
                 child: Center(
                   child: Container(
                       width: MediaQuery.of(context).size.width,
@@ -107,8 +110,8 @@ class AppDrawer extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Spacer(),
-                      Text("Version 0.0.1",style: TextStyle(fontWeight: FontWeight.w400, color: Colors.white38, fontFamily: "Poppins", fontSize: 16))
+                      const Spacer(),
+                      const Text("Version 0.0.1",style: const TextStyle(fontWeight: FontWeight.w400, color: Colors.white38, fontFamily: "Poppins", fontSize: 16))
                     ],
                   ),
                 ),
