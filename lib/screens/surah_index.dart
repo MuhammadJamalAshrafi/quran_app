@@ -99,10 +99,191 @@ class SurahIndex extends StatelessWidget {
                                 (BuildContext context, int index) =>
                                     const SizedBox(height: 20),
                             itemBuilder: (_, index) => GestureDetector(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(
-                                    builder: (_) => SurahDetail(chapter: (snapshot.data?.chapters![index])!)));
-                                },
+                              onLongPress: () {
+                                print("long press");
+                              },
+                              onTap: () {
+                                showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(50),
+                                            topLeft: Radius.circular(50))),
+                                    context: context,
+                                    builder: (context) => Padding(
+                                        padding: EdgeInsets.only(
+                                            bottom: MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom),
+                                        child: BottomSheet(
+                                          backgroundColor: Colors.white,
+                                          shape: const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.only(
+                                                  topRight: Radius.circular(50),
+                                                  topLeft:
+                                                      Radius.circular(50))),
+                                          onClosing: () {},
+                                          builder: (context) => SizedBox(
+                                              height: 425,
+                                              width: MediaQuery.of(context).size.width,
+                                              child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    const SizedBox(height: 23),
+                                                    Container(width: 110, height: 3, color: Colors.black),
+                                                    const SizedBox(height: 26),
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: [
+                                                        Image.asset("images/small_star.png",width: 24, height: 24),
+                                                        const SizedBox(width: 14),
+                                                        const Text("Surah Information",
+                                                            style: TextStyle(
+                                                                color: Colors.black,
+                                                                fontFamily: "Poppins",
+                                                                fontSize: 20,
+                                                                fontWeight: FontWeight.w500)),
+                                                        const SizedBox(width: 14),
+                                                        Image.asset("images/small_star.png",width: 24, height: 24),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(height: 14),
+                                                    const Divider(color: Color(0xFFE5E5E5),height: 5),
+                                                    Padding(
+                                                        padding: const EdgeInsets.only(right: 30,left: 30),
+                                                      child: Column(
+                                                        children: [
+                                                          const SizedBox(height: 15),
+                                                          Row(
+                                                            children: [
+                                                              Column(
+                                                                crossAxisAlignment:
+                                                                CrossAxisAlignment.start,
+                                                                children: [
+                                                                  Text(
+                                                                      snapshot.data?.chapters![index]
+                                                                          ?.name_simple ??
+                                                                          "",
+                                                                      style: const TextStyle(
+                                                                          fontSize: 16,
+                                                                          color: Colors.black,
+                                                                          fontWeight: FontWeight.w400,
+                                                                          fontFamily: "Poppins")),
+                                                                  Text(
+                                                                      snapshot.data?.chapters![index]
+                                                                          ?.translated_name?.name ??
+                                                                          "",
+                                                                      style: const TextStyle(
+                                                                          fontSize: 12,
+                                                                          color: Color(0xFF888888),
+                                                                          fontWeight: FontWeight.w300,
+                                                                          fontFamily: "Poppins"))
+                                                                ],
+                                                              ),
+                                                              const Spacer(),
+                                                              Text(
+                                                                  snapshot.data?.chapters![index]
+                                                                      ?.name_arabic ??
+                                                                      "",
+                                                                  style: const TextStyle(
+                                                                      fontSize: 18,
+                                                                      color: Colors.black,
+                                                                      fontWeight: FontWeight.w400,
+                                                                      fontFamily: "AlMajeedQuranic",
+                                                                      height: 2.5)),
+                                                            ],
+                                                          ),
+                                                          const SizedBox(height: 15),
+                                                          const Divider(color: Color(0xFFE5E5E5),height: 5),
+                                                          const SizedBox(height: 15),
+                                                          Row(
+                                                            children: const [
+                                                              Text("Ayahs : ",
+                                                                  style: TextStyle(
+                                                                      fontSize: 16,
+                                                                      color: Color(0xFF888888),
+                                                                      fontWeight: FontWeight.w500,
+                                                                      fontFamily: "Poppins")),
+                                                              Spacer(),
+                                                              Text("200",
+                                                                  style: TextStyle(
+                                                                      fontSize: 16,
+                                                                      color: Colors.black,
+                                                                      fontWeight: FontWeight.w500,
+                                                                      fontFamily: "Poppins")),
+                                                            ],
+                                                          ),
+                                                          const SizedBox(height: 15),
+                                                          const Divider(color: Color(0xFFE5E5E5),height: 5),
+                                                          const SizedBox(height: 15),
+                                                          Row(
+                                                            children: const [
+                                                              Text("Surah Number : ",
+                                                                  style: TextStyle(
+                                                                      fontSize: 16,
+                                                                      color: Color(0xFF888888),
+                                                                      fontWeight: FontWeight.w500,
+                                                                      fontFamily: "Poppins")),
+                                                              Spacer(),
+                                                              Text("3",
+                                                                  style: TextStyle(
+                                                                      fontSize: 16,
+                                                                      color: Colors.black,
+                                                                      fontWeight: FontWeight.w500,
+                                                                      fontFamily: "Poppins")),
+                                                            ],
+                                                          ),
+                                                          const SizedBox(height: 15),
+                                                          const Divider(color: Color(0xFFE5E5E5),height: 5),
+                                                          const SizedBox(height: 15),
+                                                          Row(
+                                                            children: const [
+                                                              Text("Chapter : ",
+                                                                  style: TextStyle(
+                                                                      fontSize: 16,
+                                                                      color: Color(0xFF888888),
+                                                                      fontWeight: FontWeight.w500,
+                                                                      fontFamily: "Poppins")),
+                                                              Spacer(),
+                                                              Text("3",
+                                                                  style: TextStyle(
+                                                                      fontSize: 16,
+                                                                      color: Colors.black,
+                                                                      fontWeight: FontWeight.w500,
+                                                                      fontFamily: "Poppins")),
+                                                            ],
+                                                          ),
+                                                          const SizedBox(height: 15),
+                                                          const Divider(color: Color(0xFFE5E5E5),height: 5),
+                                                          const SizedBox(height: 15),
+                                                          Row(
+                                                            children:[
+                                                              const Text("Meaning : ",
+                                                                  style: TextStyle(
+                                                                      fontSize: 16,
+                                                                      color: const Color(0xFF888888),
+                                                                      fontWeight: FontWeight.w500,
+                                                                      fontFamily: "Poppins")),
+                                                              const Spacer(),
+                                                              Text(snapshot.data?.chapters![index]
+                                                                  ?.translated_name?.name ??
+                                                                  "",
+                                                                  style: const TextStyle(
+                                                                      fontSize: 16,
+                                                                      color: Colors.black,
+                                                                      fontWeight: FontWeight.w500,
+                                                                      fontFamily: "Poppins")),
+                                                            ],
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ])),
+                                        )));
+                                // Navigator.push(context, MaterialPageRoute(
+                                //     builder: (_) => SurahDetail(chapter: (snapshot.data?.chapters![index])!)));
+                              },
                               child: Row(
                                 // children: [
                                 //   Row(
@@ -113,7 +294,9 @@ class SurahIndex extends StatelessWidget {
                                       Image.asset("images/big_star.png",
                                           width: 50, height: 50),
                                       Text(
-                                          snapshot.data?.chapters![index]?.id?.toString() ?? "",
+                                          snapshot.data?.chapters![index]?.id
+                                                  ?.toString() ??
+                                              "",
                                           style: const TextStyle(
                                               color: Colors.black,
                                               fontSize: 16,
@@ -123,17 +306,22 @@ class SurahIndex extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 34),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                          snapshot.data?.chapters![index]?.name_simple ?? "",
+                                          snapshot.data?.chapters![index]
+                                                  ?.name_simple ??
+                                              "",
                                           style: const TextStyle(
                                               fontSize: 18,
                                               color: Colors.black,
                                               fontWeight: FontWeight.w400,
                                               fontFamily: "Poppins")),
                                       Text(
-                                          snapshot.data?.chapters![index]?.translated_name?.name ?? "",
+                                          snapshot.data?.chapters![index]
+                                                  ?.translated_name?.name ??
+                                              "",
                                           style: const TextStyle(
                                               fontSize: 14,
                                               color: Color(0xFF888888),
