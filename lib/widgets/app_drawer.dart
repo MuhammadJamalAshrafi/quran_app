@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quran_app/screens/surah_index.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -43,12 +44,18 @@ class AppDrawer extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Image.asset("images/index.png"),
-                          const SizedBox(width: 14),
-                          const Text("Surah Index", style: TextStyle(fontFamily: "Poppins", fontSize: 22, fontWeight: FontWeight.w500, color: Colors.white))
-                        ],
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (_) => const SurahIndex()));
+                        },
+                        child: Row(
+                          children: [
+                            Image.asset("images/index.png"),
+                            const SizedBox(width: 14),
+                            const Text("Surah Index", style: TextStyle(fontFamily: "Poppins", fontSize: 22, fontWeight: FontWeight.w500, color: Colors.white))
+                          ],
+                        ),
                       ),
                       const SizedBox(height: 20),
                       Row(
